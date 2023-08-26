@@ -44,9 +44,58 @@ const getSinglePost = async (req: Request, res: Response) => {
     res.send(error);
   }
 };
+const updatePost = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+  const data = req.body;
+  try {
+    const result = await PostService.updatePost(id, data);
+    res.send({
+      success: true,
+      StatusCode: 200,
+      message: "Post updated successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.send(error);
+  }
+};
+const deletePost = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+  //   const data = req.body;
+  try {
+    const result = await PostService.deletePost(id);
+    res.send({
+      success: true,
+      StatusCode: 200,
+      message: "Post deleted successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const learnAggregateAndGrouping = async (req: Request, res: Response) => {
+  // const id = parseInt(req.params.id);
+  //   const data = req.body;
+  try {
+    const result = await PostService.learnAggregateAndGrouping();
+    res.send({
+      success: true,
+      StatusCode: 200,
+      message: "learn aggregate successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.send(error);
+  }
+};
 
 export const PostController = {
   createPost,
   getAllPost,
   getSinglePost,
+  updatePost,
+  deletePost,
+  learnAggregateAndGrouping,
 };
